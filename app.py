@@ -72,7 +72,7 @@ DESCRIPTION = '''
 <b>Official Gradio demo</b> for <a href="https://caizhongang.com/projects/SMPLer-X/"><b>SMPLer-X: Scaling Up Expressive Human Pose and Shape Estimation</b></a>.<br>
 <p>
 Note: You can drop a video at the panel (or select one of the examples) 
-    then you will get the 3D reconstructions of the detected human. ).
+to obtain the 3D parametric reconstructions of the detected humans.
 </p>
 '''
 
@@ -96,8 +96,8 @@ with gr.Blocks(title="SMPLer-X", css=".gradio-container") as demo:
                 scale=1,)
             gr.HTML("""<br/>""")
             mesh_as_vertices = gr.Checkbox(
-                label="Render mesh", 
-                info="By default, the reconstructions of human bodies are expressed as vertices for faster inference. Check this option if you want to render the human body with mesh.",
+                label="Render as mesh", 
+                info="By default, the estimated SMPL-X parameters are rendered as vertices for faster visualization. Check this option if you want to visualize meshes instead.",
                 interactive=True,
                 scale=1,)
 
