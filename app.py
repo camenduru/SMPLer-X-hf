@@ -6,6 +6,7 @@ import cv2
 import gradio as gr
 import torch
 import math
+import spaces
 
 try:
     import mmpose
@@ -26,6 +27,7 @@ print(torch.cuda.get_device_name(index))
 from main.inference import Inferer
 inferer = Inferer(DEFAULT_MODEL, num_gpus, OUT_FOLDER)
 
+@spaces.GPU
 def infer(video_input, in_threshold=0.5, num_people="Single person", render_mesh=False):
     os.system(f'rm -rf {OUT_FOLDER}/*')
     multi_person = False if (num_people == "Single person") else True
