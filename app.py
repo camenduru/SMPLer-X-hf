@@ -6,7 +6,6 @@ import cv2
 import gradio as gr
 import torch
 import math
-import spaces
 
 try:
     import mmpose
@@ -27,7 +26,6 @@ print(torch.cuda.get_device_name(index))
 from main.inference import Inferer
 inferer = Inferer(DEFAULT_MODEL, num_gpus, OUT_FOLDER)
 
-@spaces.GPU
 def infer(video_input, in_threshold=0.5, num_people="Single person", render_mesh=False):
     os.system(f'rm -rf {OUT_FOLDER}/*')
     multi_person = False if (num_people == "Single person") else True
@@ -66,10 +64,7 @@ def infer(video_input, in_threshold=0.5, num_people="Single person", render_mesh
 
 TITLE = '''<h1 align="center">SMPLer-X: Scaling Up Expressive Human Pose and Shape Estimation</h1>'''
 VIDEO = '''
-<center><iframe width="960" height="540" 
-src="https://www.youtube.com/embed/DepTqbPpVzY?si=qSeQuX-bgm_rON7E"title="SMPLer-X: Scaling Up Expressive Human Pose and Shape Estimation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-</center><br>'''
+<center>https://www.youtube.com/watch?v=DepTqbPpVzY</center><br>'''
 DESCRIPTION = '''
 <b>Official Gradio demo</b> for <a href="https://caizhongang.com/projects/SMPLer-X/"><b>SMPLer-X: Scaling Up Expressive Human Pose and Shape Estimation</b></a>.<br>
 <p>
@@ -129,4 +124,4 @@ with gr.Blocks(title="SMPLer-X", css=".gradio-container") as demo:
         inputs=[video_input, 0.5])
 
 #demo.queue()
-demo.launch(debug=True)
+demo.queue().launch(share=True, debug=True)
