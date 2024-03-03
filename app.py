@@ -10,11 +10,11 @@ import math
 try:
     import mmpose
 except:
-    os.system('pip install /home/user/app/main/transformer_utils')
+    os.system('pip install /content/SMPLer-X-hf/main/transformer_utils')
 
-os.system('cp -rf /home/user/app/assets/conversions.py /home/user/.pyenv/versions/3.8.18/lib/python3.8/site-packages/torchgeometry/core/conversions.py')
+os.system('cp -rf /content/SMPLer-X-hf/assets/conversions.py /home/user/.pyenv/versions/3.8.18/lib/python3.8/site-packages/torchgeometry/core/conversions.py')
 DEFAULT_MODEL='smpler_x_h32'
-OUT_FOLDER = '/home/user/app/demo_out'
+OUT_FOLDER = '/content/SMPLer-X-hf/demo_out'
 os.makedirs(OUT_FOLDER, exist_ok=True)
 num_gpus = 1 if torch.cuda.is_available() else -1
 print("!!!", torch.cuda.is_available())      
@@ -111,15 +111,15 @@ with gr.Blocks(title="SMPLer-X", css=".gradio-container") as demo:
     send_button.click(fn=infer, inputs=[video_input, threshold, num_people, mesh_as_vertices], outputs=[video_output, meshes_output, smplx_output])
     # with gr.Row():
     example_videos = gr.Examples([
-        ['/home/user/app/assets/01.mp4'], 
-        ['/home/user/app/assets/02.mp4'], 
-        ['/home/user/app/assets/03.mp4'],
-        ['/home/user/app/assets/04.mp4'],
-        ['/home/user/app/assets/05.mp4'], 
-        ['/home/user/app/assets/06.mp4'], 
-        ['/home/user/app/assets/07.mp4'],
-        ['/home/user/app/assets/08.mp4'],
-        ['/home/user/app/assets/09.mp4'],
+        ['/content/SMPLer-X-hf/assets/01.mp4'], 
+        ['/content/SMPLer-X-hf/assets/02.mp4'], 
+        ['/content/SMPLer-X-hf/assets/03.mp4'],
+        ['/content/SMPLer-X-hf/assets/04.mp4'],
+        ['/content/SMPLer-X-hf/assets/05.mp4'], 
+        ['/content/SMPLer-X-hf/assets/06.mp4'], 
+        ['/content/SMPLer-X-hf/assets/07.mp4'],
+        ['/content/SMPLer-X-hf/assets/08.mp4'],
+        ['/content/SMPLer-X-hf/assets/09.mp4'],
         ], 
         inputs=[video_input, 0.5])
 
